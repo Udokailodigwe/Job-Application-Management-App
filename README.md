@@ -1,8 +1,8 @@
-#Jobify
+# Jobify
 
 ### Track Your Job Search
 
-###Run The App Locally
+### Run The App Locally
 
 - npm run install-dependencies
 - rename .env.temp to .env
