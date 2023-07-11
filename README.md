@@ -2,6 +2,11 @@
 
 ### Track Your Job Search
 
+- Job Tacking application, to enable you keep track of your job
+  application, upcoming interviews and essentially organizing your job
+  search activities. Makes your life as a potential job candidate
+  stress free, so you can concentrate on landing your preferred job.
+
 ### Run The App Locally
 
 ```sh
@@ -33,3 +38,43 @@ npx create-react-app .
 ```sh
 npm start
 ```
+
+#### App Styling
+
+- Utilized Normalize.css and Global Styles, CSS in JS (styled-components)
+- normalize.css [normalize docs](https://necolas.github.io/normalize.css/)
+
+```sh
+npm install normalize.css
+```
+
+- import 'normalize.css' in index.js
+
+- for styled components
+
+```sh
+npm install styled-components
+```
+
+```js
+import styled from "styled-components";
+
+const El = styled.el`
+  // styles go here
+`;
+```
+
+```js
+const Wrapper = styled.el``;
+
+const Component = () => {
+  return (
+    <Wrapper>
+      <h1> Component</h1>
+    </Wrapper>
+  );
+};
+```
+
+- Wrappers was used only for styling
+- Wrappers folder in assets
