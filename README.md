@@ -39,7 +39,7 @@ npx create-react-app .
 npm start
 ```
 
-#### App Styling
+### App Styling
 
 - Utilized Normalize.css and Global Styles, CSS in JS (styled-components)
 - normalize.css [normalize docs](https://necolas.github.io/normalize.css/)
@@ -79,3 +79,18 @@ const Component = () => {
 
 - Wrappers was used only for styling
 - Wrappers folder in assets
+
+### Site Navigation
+
+- React Router Version 6
+- [React Router Docs](https://reactrouter.com/docs/en/v6)
+
+```sh
+npm install history@5 react-router-dom@6
+```
+
+- Four components utilized
+
+```js
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+```
