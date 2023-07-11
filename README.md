@@ -43,6 +43,7 @@ npm start
 
 - Utilized Normalize.css and Global Styles, CSS in JS (styled-components)
 - normalize.css [normalize docs](https://necolas.github.io/normalize.css/)
+- Checkout [Styled Components Docs](https://styled-components.com/)
 
 ```sh
 npm install normalize.css
