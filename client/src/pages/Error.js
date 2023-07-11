@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom";
+import img from "../assets/images/not-found.svg";
+import Wrapper from "../assets/wrappers/ErrorPage";
+
 const Error = () => {
   return (
-    <div>
-      <h1>Error</h1>
-    </div>
+    <Wrapper className="full-page">
+      <div>
+        <img src={img} alt="not found" />
+        <h2>OOPS! Page Not Fount</h2>
+        <p>The page you are trying to access does not exist.</p>
+        <Link to="/">Back home</Link>
+      </div>
+    </Wrapper>
   );
 };
 
