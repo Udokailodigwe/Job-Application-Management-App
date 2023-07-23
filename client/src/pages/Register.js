@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const Register = () => {
   return (
     <div>
-      <p>Register</p>
+      <h1>Register page</h1>
     </div>
   );
 };
