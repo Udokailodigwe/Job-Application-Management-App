@@ -7,7 +7,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/example" element={<Example />} />
+        {/* <Route path="/example" element={<Example />} /> */}
         <Route path="/landing" element={<Landing />} />
         <Route path="*" element={<Error />} />
       </Routes>
