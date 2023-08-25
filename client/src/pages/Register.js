@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { logo } from "../components";
+import { Logo, FormRow, Alert } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
 
 const initialState = {
@@ -7,22 +7,49 @@ const initialState = {
   email: "",
   password: "",
   isMember: true,
+  showAlert: true,
 };
 
 const Register = () => {
-  const [value, setValue] = useState(initialState);
+  const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
-    console.log(e);
+    console.log(e.target);
   };
 
   const onSubmit = (e) => {
-    console.log(e);
+    e.preventDefault();
+    console.log(e.target);
   };
 
   return (
     <Wrapper className="full-page">
-      <h1>Register page</h1>
+      <form className="form" onSubmit={onSubmit}>
+        <Logo />
+        <h3>Login</h3>
+        {values.showAlert && <Alert />}
+        <FormRow
+          type="text"
+          name="name"
+          value={values.name}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type="email"
+          name="email"
+          value={values.email}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type="password"
+          name="password"
+          value={values.password}
+          handleChange={handleChange}
+        />
+        <button type="submit" className="btn btn-block">
+          submit
+        </button>
+      </form>
     </Wrapper>
   );
 };
