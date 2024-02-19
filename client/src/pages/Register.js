@@ -1,39 +1,72 @@
 import { useState, useEffect } from "react";
-import { Logo, FormRow, Alert } from "../components";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser, registerUser } from "../features/user/userSlice";
+import { Logo, FormRow } from "../components";
+import { toast } from "react-toastify";
 import Wrapper from "../assets/wrappers/RegisterPage";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
   email: "",
   password: "",
   isMember: true,
-  showAlert: true,
+  showAlert: false,
 };
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
+  const { user, isLoading } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(e.target);
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues({ ...values, [name]: value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const { name, email, password, isMember } = values;
+    if (!email || !password || (!isMember && !name)) {
+      toast.error("Please fill out all fields");
+      return;
+    }
+    if (isMember) {
+      dispatch(loginUser({ email, password })); // persist the input on on the view
+      return;
+    }
+    dispatch(registerUser({ name, email, password })); // persist the input on on the view
   };
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+  }, [user, navigate]);
 
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        <h3>Login</h3>
-        {values.showAlert && <Alert />}
-        <FormRow
-          type="text"
-          name="name"
-          value={values.name}
-          handleChange={handleChange}
-        />
+        <h3>{values.isMember ? "Login" : "Register"}</h3>
+
+        {!values.isMember && (
+          <FormRow
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
+          />
+        )}
+
         <FormRow
           type="email"
           name="email"
@@ -46,9 +79,16 @@ const Register = () => {
           value={values.password}
           handleChange={handleChange}
         />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           submit
         </button>
+        <p>
+          {values.isMember ? "Not a member yet ? " : "Already a member ? "}
+
+          <button className="member-btn" type="button" onClick={toggleMember}>
+            {values.isMember ? "Register" : "Login"}
+          </button>
+        </p>
       </form>
     </Wrapper>
   );

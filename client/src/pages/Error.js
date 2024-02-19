@@ -7,7 +7,7 @@ const Error = () => {
     <Wrapper className="full-page">
       <div>
         <img src={img} alt="not found" />
-        <h2>OOPS! Page Not Fount</h2>
+        <h2>OOPS! Page Not Found</h2>
         <p>The page you are trying to access does not exist.</p>
         <Link to="/">Back home</Link>
       </div>
