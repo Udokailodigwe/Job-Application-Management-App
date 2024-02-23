@@ -2,7 +2,7 @@
 
 ### Track Your Job Search
 
-- Job Tacking application, to enable you keep track of your job
+- Job Tracking application, to enable you keep track of your job
   application, upcoming interviews and essentially organizing your job
   search activities. Makes your life as a potential job candidate
   stress free, so you can concentrate on landing your preferred job.

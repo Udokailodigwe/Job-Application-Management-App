@@ -1,33 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import customFetch from "../../utils/axios";
 import { toast } from "react-toastify";
 import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from "../../utils/localStorage";
+import {
+  loginUserThunk,
+  registerUserThunk,
+  updateUserThunk,
+} from "./userThunk";
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user, thunkAPI) => {
-    try {
-      const resp = await customFetch.post("/auth/register", user);
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
+    return registerUserThunk("/auth/registerUser", user, thunkAPI);
   }
 );
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
-    try {
-      const resp = await customFetch.post("/auth/login", user);
-      return resp.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
+    return loginUserThunk("/auth/login", user, thunkAPI);
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (user, thunkAPI) => {
+    return updateUserThunk("/auth/updateUser", user, thunkAPI);
   }
 );
 
@@ -77,7 +78,6 @@ const userSlice = createSlice({
     });
 
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log(action);
       const { user } = action.payload;
       state.isLoading = false;
       state.user = user;
@@ -86,6 +86,21 @@ const userSlice = createSlice({
     });
 
     builder.addCase(loginUser.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    builder.addCase(updateUser.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+      const { user } = payload;
+      state.isLoading = false;
+      state.user = user;
+      addUserToLocalStorage(user);
+      toast.success("User Updated");
+    });
+    builder.addCase(updateUser.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });
