@@ -32,6 +32,15 @@ const AddJobs = () => {
       toast.error("Please fill out all fields");
       return;
     }
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
+      return;
+    }
     dispatch(createJob({ position, company, jobLocation, status, jobType }));
   };
 
@@ -45,6 +54,7 @@ const AddJobs = () => {
     if (!isEditing) {
       dispatch(handleChange({ name: "jobLocation", value: user.location }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
