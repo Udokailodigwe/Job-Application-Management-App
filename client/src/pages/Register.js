@@ -34,10 +34,10 @@ const Register = () => {
       return;
     }
     if (isMember) {
-      dispatch(loginUser({ email, password })); // persist the input on on the view
+      dispatch(loginUser({ email, password }));
       return;
     }
-    dispatch(registerUser({ name, email, password })); // persist the input on on the view
+    dispatch(registerUser({ name, email, password }));
   };
 
   const toggleMember = () => {
