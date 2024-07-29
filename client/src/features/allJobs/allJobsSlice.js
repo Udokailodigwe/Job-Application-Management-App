@@ -54,8 +54,17 @@ const allJobsSlice = createSlice({
     showLoading: (state) => {
       state.isLoading = true;
     },
+
     hideLoading: (state) => {
       state.isLoading = false;
+    },
+
+    handleChange: (state, { payload: { name, value } }) => {
+      state[name] = value;
+    },
+
+    clearFilters: (state) => {
+      return { ...state, ...initialFilterState };
     },
   },
 
@@ -71,6 +80,7 @@ const allJobsSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     });
+
     builder.addCase(showStats.pending, (state) => {
       state.isLoading = true;
     });
@@ -89,6 +99,7 @@ const allJobsSlice = createSlice({
   },
 });
 
-export const { showLoading, hideLoading } = allJobsSlice.actions;
+export const { showLoading, hideLoading, handleChange, clearFilters } =
+  allJobsSlice.actions;
 
 export default allJobsSlice.reducer;
