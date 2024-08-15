@@ -52,6 +52,7 @@ const SearchContainer = () => {
             value={localSearch}
             handleChange={optimizedDebounce}
           />
+
           {/* Search by status */}
           <FormRowSelect
             labelText="status"
@@ -60,6 +61,7 @@ const SearchContainer = () => {
             handleChange={handleSearch}
             list={["all", ...statusOptions]}
           />
+
           {/* Search by types */}
           <FormRowSelect
             labelText="type"
@@ -68,6 +70,7 @@ const SearchContainer = () => {
             handleChange={handleSearch}
             list={["all", ...jobTypeOptions]}
           />
+
           {/* Sort */}
           <FormRowSelect
             name="sort"
