@@ -1,4 +1,4 @@
-# Jobify
+# Job-Application-Management-App
 
 ### Track Your Job Search
 
@@ -13,8 +13,7 @@
 npm run install-dependencies
 ```
 
-- rename .env.temp to .env
-- setup values for - MONGO_URL, JWT_SECRET, JWT_LIFETIME
+
 
 ```sh
 npm start
