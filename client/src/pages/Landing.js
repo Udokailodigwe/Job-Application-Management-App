@@ -12,7 +12,7 @@ const Landing = () => {
       <div className="container page">
         <div className="info">
           <h1>
-            job <span>tracking</span> app
+            job <span>management application</span> app
           </h1>
           <p>
             Job Tacking Application, to enable you keep track of your job
